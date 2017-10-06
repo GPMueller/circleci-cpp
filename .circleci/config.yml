@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: mkdir -p build && cd build
-      - run: make -j2
+      - run: g++ -o main main.cpp -std=c++14
       - run: ./main
   build_gcc_latest:
     docker:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - run: mkdir -p build && cd build
-      - run: make -j2
+      - run: g++ -o main main.cpp -std=c++17
       - run: ./main
 
 workflows:
