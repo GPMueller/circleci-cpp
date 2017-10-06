@@ -1,0 +1,10 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: gcc:latest
+    steps:
+      - checkout
+      - run: mkdir -p build && cd build
+      - run: make -j2
+      - run: ./dump
