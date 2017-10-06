@@ -1,6 +1,14 @@
 version: 2.0
 jobs:
-  build:
+  build_gcc_6:
+    docker:
+      - image: gcc:6
+    steps:
+      - checkout
+      - run: mkdir -p build && cd build
+      - run: make -j2
+      - run: ./dump
+  build_gcc_latest:
     docker:
       - image: gcc:latest
     steps:
@@ -8,3 +16,10 @@ jobs:
       - run: mkdir -p build && cd build
       - run: make -j2
       - run: ./dump
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build_gcc_6
+      - build_gcc_latest
